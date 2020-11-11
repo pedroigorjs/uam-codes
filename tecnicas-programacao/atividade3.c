@@ -1,3 +1,8 @@
+/*
+  Author: Pedro Sampaio
+  Github: https://github.com/pedroigorjs/uam-codes/blob/main/tecnicas-programacao/atividade3.c
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -130,6 +135,10 @@ void atualizarMontante(Clientes *lista) {
   }
 }
 
+void melhorComprador(Clientes *lista) {
+  listarCliente(lista, 0);
+}    
+
 void exibirMontante(Clientes *lista) {
   int posicao;
 
@@ -144,33 +153,40 @@ void exibirMontante(Clientes *lista) {
   }
 }
 
-void menu(Clientes *lista) {
+int menu(Clientes *lista) {
   int opcao;
 
-  printf("\n\nMenu:\n[0] - Incluir Cliente\n[1] - Remover Cliente\n[2] - Atualizar montante do Cliente\n[3] - Zerar todos os montantes\n[4] - Cliente melhor comprador\n[5] - Exibir montante de um Cliente\n[6] - Listar Clientes\n\nEscolha uma Opção: ");
+  printf("\n\nMenu:\n[1] - Incluir Cliente\n[2] - Remover Cliente\n[3] - Atualizar montante do Cliente\n[4] - Zerar todos os montantes\n[5] - Cliente melhor comprador\n[6] - Exibir montante de um Cliente\n[7] - Listar Clientes\n[0] - Sair do Programa\n\nEscolha uma Opção: ");
 
   fflush(stdin);
   scanf("%d", &opcao);
 
-  if(opcao == 0) {
+  if(opcao == 1) {
     incluirCliente(lista);
     menu(lista);
-  } else if(opcao == 1) {
+  } else if(opcao == 2) {
     removerCliente(lista);
     menu(lista);
-  } else if(opcao == 2) {
+  } else if(opcao == 3) {
     atualizarMontante(lista);
     menu(lista);
-  } else if(opcao == 3) {
+  } else if(opcao == 4) {
     zerarMontantes(lista);
     menu(lista);
   } else if(opcao == 5) {
-    exibirMontante(lista);
+    melhorComprador(lista);
     menu(lista);
   } else if(opcao == 6) {
+    exibirMontante(lista);
+    menu(lista);
+  } else if(opcao == 7) {
     listarClientes(lista);
     menu(lista);
+  } else if(opcao == 0) {
+    free(lista);
   }
+
+  return 0;
 }
 
 int main() {
