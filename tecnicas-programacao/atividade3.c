@@ -136,7 +136,15 @@ void atualizarMontante(Clientes *lista) {
 }
 
 void melhorComprador(Clientes *lista) {
-  listarCliente(lista, 0);
+  int i, melhorComprador = 0;
+
+  for(i = 0; i < lista->qtde_clientes; i++) {
+    if(lista->clientes[melhorComprador].montante_gastos_mes < lista->clientes[i].montante_gastos_mes) {
+      melhorComprador = i;
+    }
+  }
+
+  listarCliente(lista, melhorComprador);
 }    
 
 void exibirMontante(Clientes *lista) {
